@@ -24,6 +24,24 @@ public class PrefixTree {
       current = child;
     }
   }
+  
+  public void enumerate(String prefix) {
+    char[] chars = prefix.toCharArray();
+    Node current = root, temp;
+    for (int i = 0; i < chars.length; ++i) {
+      if ((temp = current.getChild(chars[i])) != null) {
+        current = temp;
+      } else {
+        break;
+      }
+    }
+    if (current != null) {
+      StringBuilder sb = new StringBuilder(
+          prefix.subSequence(0, prefix.length()-1));
+      current.enumerate(sb);
+      System.out.println(sb.toString());
+    }
+  }
 
   public void printTree() {
     root.print(0);
@@ -36,5 +54,9 @@ public class PrefixTree {
     pt.addWord("am");
     pt.addWord("are");
     pt.printTree();
+    System.out.println("words with prefix a:");
+    pt.enumerate("a");
+    System.out.println("words with prefix ar:");
+    pt.enumerate("ar");
   }
 }

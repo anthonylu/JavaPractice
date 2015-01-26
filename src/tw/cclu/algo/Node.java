@@ -31,4 +31,14 @@ public class Node {
     for (Node n:children.values())
       n.print(level+1);
   }
+  
+  public void enumerate(StringBuilder prefix) {
+    if (children.isEmpty()) {
+      prefix.append(character);
+      prefix.append(",");
+      return;
+    }
+    for (Node n:children.values())
+      n.enumerate(prefix.append(character));
+  }
 }
