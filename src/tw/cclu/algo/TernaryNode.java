@@ -45,6 +45,23 @@ public class TernaryNode {
     equal = n;
   }
   
+  public void enumerate(StringBuilder sb, String prefix) {
+    if (low != null) low.enumerate(sb, prefix);
+    if (high != null) high.enumerate(sb, prefix);
+    if (equal != null) {
+      prefix = prefix + character;
+      if (isEnd) {
+        sb.append(prefix);
+        sb.append(',');
+      }
+      equal.enumerate(sb, prefix);
+    } else {
+      sb.append(prefix);
+      sb.append(character);
+      sb.append(',');
+    }
+  }
+  
   public void print(int level, String state) {
     System.out.println(character+" "+level+" "+state+" "+(isEnd?"*":""));
     if (equal != null) equal.print(level+1, "E");
