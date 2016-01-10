@@ -19,7 +19,7 @@ public class RandomShuffleTest {
     boolean check = true;
     Arrays.sort(array);
     for (int i=0;i<array.length;++i) {
-      check = check&&(array[i]==i);
+      check = check&&(array[i]==(i+1));
     }
     assertTrue(check);
   }
